@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="form_header">
+    <div class="upload_form">
+      <form action="http://192.168.1.47/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" multiple><br>
+        <input type="submit" value="Upload">
+        <p class="msg">{{ msg }}</p>
+      </form>
+    </div>
+
+    <div class="create_folder">
+      <form action="http://192.168.1.47/create" method="post">
+        <input type="text" name="text"><br>
+        <input type="submit" value="Create">
+        <p class="msg">{{ msg }}</p>
+      </form>
+    </div>
+  </div>
+
+  <div class="list_content">
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <a href="../">
+            <img src="../static/img/arrow-back-folder.png" height="40" width="40" alt="folder">
+            ..
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  {% for folder in dir_folders %}
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <a href="{{(request.path + '/' if request.path != '/' else '') + folder}}">
+            <img src="../static/img/folder.png" height="40" width="40" alt="folder">
+            {{ folder }}
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  {% endfor %}
+  {% for file in dir_files %}
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <a href="{{(request.path + '/' if request.path != '/' else '') + file}}">
+            <img src="../static/img/file-icon.png" height="40" width="40" alt="file">
+            {{ file }}
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  {% endfor %}
+  </div>
+</body>
+</html>

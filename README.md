@@ -5,3 +5,11 @@ En un principio solo se podrán conectarse los locales.
 
 #### Primero hay que instalar los requerimientos
 python -m pip install -r requirement.txt
+
+#### Necesitas estos programas para que funcione correctamente
+##### Windows
+MySQL Installer: https://dev.mysql.com/downloads/installer/
+
+#### Linux
+##### Ubuntu/Debian/PopOS/...
+$ sudo apt-get install mysql-server
