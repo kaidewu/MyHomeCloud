@@ -4,31 +4,40 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="..{{ url_for('static', filename='css/style.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <title>Mi Unidad</title>
 </head>
 <body>
-  <div class="forms" style="top: 20px;">
-    <div class="form_header">
-      <div class="upload_form">
-        <form action="http://192.168.1.47/upload" method="post" enctype="multipart/form-data">
+  <header>
+    <a href="{{url_for('home')}}" class="my_unit">Unidad</a>
+    <ul>
+      <li>
+        <a href="{{url_for('dir_list')}}">Mi unidad</a>
+        <a href="{{url_for('home')}}">Home</a>
+        <a href="{{url_for('logout')}}">Logout</a>
+      </li>
+    </ul>
+  </header>
+
+  <div class="forms">
+    <div>
+        <form action="{{url_for('upload_files')}}" method="post" enctype="multipart/form-data">
           <p id="msg_upload"></p>
           <input type="file" name="file" id="file" onclick="alertErrorUpload()" multiple><br>
           <input type="submit" value="Upload">
         </form>
         <p id="error_upload"></p>
-      </div>
-
-      <div class="create_folder">
+        <br>
         <form action="http://192.168.1.47/create" method="post">
-          <p class="msg_create"></p>
+          <p id="msg_create"></p>
           <input type="text" name="text" id="text" onclick="alertErrorCreate()"><br>
           <input type="submit" value="Create">
         </form>
         <p id="error_create"></p>
-      </div>
     </div>
   </div>
-
+<br>
   <script>
     var up_upload = document.getElementById("msg_upload");
     var up_create = document.getElementById("msg_create");
@@ -86,7 +95,7 @@
       <tr>
         <td>
           <a href="{{(request.path + '/' if request.path != '/' else '') + file}}">
-            <img src="../static/img/file-icon.png" height="40" width="40" alt="file">
+          <img src="../static/img/file-icon.png" height="40" width="40" alt="file">
             {{ file }}
           </a>
         </td>

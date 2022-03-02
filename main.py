@@ -13,7 +13,7 @@ mysql_user = os.environ.get('MYSQL_USER')
 mysql_password = os.environ.get('MYSQL_PASSWORD')
 mysql_host = os.environ.get('MYSQL_HOST')
 mysql_db = os.environ.get('MYSQL_DB')
-BASE_DIR = os.environ.get('BASE_DIR')
+BASE_DIR = "E:\\"
 abs_path_folder = []
 
 app = Flask(__name__,template_folder='template')
@@ -43,7 +43,7 @@ def login():
             session['id'] = db.fetchUserexists(username, password)['id']
             session['username'] = db.fetchUserexists(username, password)['username']
             session['foldername'] = db.fetchFolderName(session['id'], session['username'])['folder_name']
-            abs_path_folder.append(BASE_DIR + session['foldername'] + '\\')
+            abs_path_folder.append(f"{BASE_DIR}{session['foldername']}\\")
             if (db.fetchUserexists(username, password)['level'] == 'administrator'):
                 # Redirect to admin page
                 return redirect(url_for('admin'))
@@ -111,7 +111,7 @@ def dir_list(req_path):
         global abs_path_folder
         dir_folders = []
         dir_files = []
-        user_folder = BASE_DIR + session['foldername'] + '\\'
+        user_folder = f"{BASE_DIR}{session['foldername']}\\"
         abs_path = os.path.join(user_folder, req_path)
         if len(abs_path_folder) == 10:
             abs_path_folder = []
@@ -130,7 +130,8 @@ def dir_list(req_path):
             except:
                 return render_template('404.html')
         return render_template('content.html', dir_files=dir_files, dir_folders=dir_folders, abs_path_folder=abs_path_folder)
-    return redirect(url_for('login'))
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/upload', methods = ['GET', 'POST'])
 def upload_files():

@@ -9,7 +9,7 @@
 
 body{
     min-height: 100vh;
-    background-color: white;
+    background-color: #435165;
     color: black;
     padding: 0;
     margin: 0;
@@ -27,7 +27,7 @@ header{
 }
 
 header .my_unit{
-    color: black;
+    color: white;
     font-weight: 700;
     text-decoration: none;
     font-size: 2em;
@@ -48,12 +48,39 @@ header ul li{
 header ul li a{
     text-decoration: none;
     padding: 6px 15px;
-    color: black;
+    color: white;
     border-radius: 20px;
 }
 
 header ul li a:hover,
 header ul li a.active{
-    background: rgb(46, 76, 143);
-    color: #2b1055;
+    background: #4d5d74;
+    color: black;
+}
+
+p{
+    color: white;
+}
+
+.forms{
+    margin-top: 7em;
+    margin-left: 3em;
+}
+
+.list_content{
+    margin-left: 3em;
+}
+
+table{
+    width: 100%;
+}
+
+table tr:hover{
+    background-color: #4d5d74;
+    border: 2em;
+}
+
+table tr td a{
+    text-decoration: none;
+    color: white;
 }
