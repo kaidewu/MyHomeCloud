@@ -7,21 +7,23 @@
   <title>Document</title>
 </head>
 <body>
-  <div class="form_header">
-    <div class="upload_form">
-      <form action="http://192.168.1.47/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" multiple><br>
-        <input type="submit" value="Upload">
-        <p class="msg">{{ msg }}</p>
-      </form>
-    </div>
+  <div class="forms" style="top: 20px;">
+    <div class="form_header">
+      <div class="upload_form">
+        <form action="http://192.168.1.47/upload" method="post" enctype="multipart/form-data">
+          <input type="file" name="file" multiple><br>
+          <input type="submit" value="Upload">
+          <p class="msg">{{ msg }}</p>
+        </form>
+      </div>
 
-    <div class="create_folder">
-      <form action="http://192.168.1.47/create" method="post">
-        <input type="text" name="text"><br>
-        <input type="submit" value="Create">
-        <p class="msg">{{ msg }}</p>
-      </form>
+      <div class="create_folder">
+        <form action="http://192.168.1.47/create" method="post">
+          <input type="text" name="text"><br>
+          <input type="submit" value="Create">
+          <p class="msg">{{ msg }}</p>
+        </form>
+      </div>
     </div>
   </div>
 

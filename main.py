@@ -5,13 +5,14 @@ import os
 import db
 import hashlib
 import re
-
-secret_key = 'my_secret_key'
-mysql_user = 'root'
-mysql_password = 'kaidewu'
-mysql_host = 'localhost'
-mysql_db = 'applogin'
-BASE_DIR = 'E:\\'
+from dotenv import load_dotenv
+load_dotenv('C:\\Users\\kayfe\\Desktop\\Github\\MyHomeCloud\\config.env')
+secret_key = os.environ.get('SECRET_KEY')
+mysql_user = os.environ.get('MYSQL_USER')
+mysql_password = os.environ.get('MYSQL_PASSWORD')
+mysql_host = os.environ.get('MYSQL_HOST')
+mysql_db = os.environ.get('MYSQL_DB')
+BASE_DIR = os.environ.get('BASE_DIR')
 abs_path_folder = []
 
 app = Flask(__name__,template_folder='template')
