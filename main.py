@@ -5,6 +5,7 @@ import os
 import db
 import hashlib
 import re
+# Importamos el contenido de config.env
 from dotenv import load_dotenv
 load_dotenv('C:\\Users\\kayfe\\Desktop\\Github\\MyHomeCloud\\config.env')
 secret_key = os.environ.get('SECRET_KEY')
@@ -30,7 +31,7 @@ mysql = MySQL(app)
 def login():
      # Si algo sale mal que salga un mensaje
     msg = ''
-    # Check if "username" and "password" POST requests exist (user submitted form)
+    # Comprovamos si "username" y "password" POST request existe (los datos los recogemos de los formularios)
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         # Create variables for easy access
         username = request.form['username']
@@ -142,8 +143,7 @@ def upload_files():
                 abs_path_folder = []
                 return redirect(url_for('dir_list'))
             else:
-                msg = 'Select one file, please'
-                return render_template('content.html', msg=msg)
+                return redirect(url_for('dir_list'))
 
 @app.route('/create', methods = ['GET', 'POST'])
 def create_folder():
@@ -156,8 +156,7 @@ def create_folder():
             abs_path_folder = []
             return redirect(url_for('dir_list'))
         else:
-            msg = 'Write a name, please'
-            return render_template('content.html', msg=msg)
+            return redirect(url_for('dir_list'))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

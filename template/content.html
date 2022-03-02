@@ -4,28 +4,54 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Mi Unidad</title>
 </head>
 <body>
   <div class="forms" style="top: 20px;">
     <div class="form_header">
       <div class="upload_form">
         <form action="http://192.168.1.47/upload" method="post" enctype="multipart/form-data">
-          <input type="file" name="file" multiple><br>
+          <p id="msg_upload"></p>
+          <input type="file" name="file" id="file" onclick="alertErrorUpload()" multiple><br>
           <input type="submit" value="Upload">
-          <p class="msg">{{ msg }}</p>
         </form>
+        <p id="error_upload"></p>
       </div>
 
       <div class="create_folder">
         <form action="http://192.168.1.47/create" method="post">
-          <input type="text" name="text"><br>
+          <p class="msg_create"></p>
+          <input type="text" name="text" id="text" onclick="alertErrorCreate()"><br>
           <input type="submit" value="Create">
-          <p class="msg">{{ msg }}</p>
         </form>
+        <p id="error_create"></p>
       </div>
     </div>
   </div>
+
+  <script>
+    var up_upload = document.getElementById("msg_upload");
+    var up_create = document.getElementById("msg_create");
+    var down_upload = document.getElementById("error_upload");
+    var down_create = document.getElementById("error_create");
+    var file = document.getElementById("file");
+    var text = document.getElementById("text");
+    up_upload.innerHTML = "Select files";
+    up_create.innerHTML = "Write a name";
+    function alertErrorUpload(){
+      if (file.files.length == 0){
+        down_upload.innerHTML = "No has seleccionado nada";
+      } else {
+        var numFiles = file.files.length;
+        down_upload.innerHTML = "Has elegido " + numFiles + " archivos";
+      }
+    }
+    function alertErrorCreate(){
+      if (text == ""){
+        down_create.innerHTML = "No has seleccionado nada";
+      }
+    }
+  </script>
 
   <div class="list_content">
   <table>
