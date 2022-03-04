@@ -193,6 +193,7 @@ header ul li a.active{
 
 .list_content{
     margin: 13% 2%;
+    position: relative;
 }
 
 .list_content a{
