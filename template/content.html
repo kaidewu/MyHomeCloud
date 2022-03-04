@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.0.0/css/all.css">
   <link rel="stylesheet" href="..{{ url_for('static', filename='css/style.css') }}">
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <title>Mi Unidad</title>
@@ -20,8 +21,8 @@
     </ul>
   </header>
 
-  <div class="forms">
-    <div>
+  <!--<div class="forms">
+    <div id="uploadform">
         <form action="{{url_for('upload_files')}}" method="post" enctype="multipart/form-data">
           <p id="msg_upload"></p>
           <input type="file" name="file" id="file" onclick="alertErrorUpload()" multiple><br>
@@ -29,80 +30,86 @@
         </form>
         <p id="error_upload"></p>
         <br>
-        <form action="http://192.168.1.47/create" method="post">
-          <p id="msg_create"></p>
-          <input type="text" name="text" id="text" onclick="alertErrorCreate()"><br>
-          <input type="submit" value="Create">
-        </form>
-        <p id="error_create"></p>
+    <div id="createform">
+      <form action="http://192.168.1.47/create" method="post">
+        <p id="msg_create"></p>
+        <input type="text" name="text" id="text" onclick="alertErrorCreate()"><br>
+        <input type="submit" value="Create">
+      </form>
+      <p id="error_create"></p>
+    </div>
+    </div>
+  </div>-->
+  <br>
+  <div class="container">
+    <a href="#" class="upload-button" id="upload-button">Upload</a>
+    <a href="#" class="create-button" id="create-button">Create Folder</a>
+  </div>
+  <div class="upload-popup">
+    <div class="upload-popup-content">
+      <i class="fas fa-xmark" id="upload-close"></i>
+      <h2>Subir archivos</h2>
+      <form action="{{url_for('upload_files')}}" method="post" enctype="multipart/form-data">
+        <p> Elije un archivo/s</p>
+        <input type="file" name="file" id="file" multiple><br>
+        <input type="submit" value="Upload">
+      </form>
+      <p id="error_upload"></p>
     </div>
   </div>
-<br>
-  <script>
-    var up_upload = document.getElementById("msg_upload");
-    var up_create = document.getElementById("msg_create");
-    var down_upload = document.getElementById("error_upload");
-    var down_create = document.getElementById("error_create");
-    var file = document.getElementById("file");
-    var text = document.getElementById("text");
-    up_upload.innerHTML = "Select files";
-    up_create.innerHTML = "Write a name";
-    function alertErrorUpload(){
-      if (file.files.length == 0){
-        down_upload.innerHTML = "No has seleccionado nada";
-      } else {
-        var numFiles = file.files.length;
-        down_upload.innerHTML = "Has elegido " + numFiles + " archivos";
-      }
-    }
-    function alertErrorCreate(){
-      if (text == ""){
-        down_create.innerHTML = "No has seleccionado nada";
-      }
-    }
-  </script>
-
-  <div class="list_content">
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <a href="../">
-            <img src="../static/img/arrow-back-folder.png" height="40" width="40" alt="folder">
-            ..
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  {% for folder in dir_folders %}
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <a href="{{(request.path + '/' if request.path != '/' else '') + folder}}">
-            <img src="../static/img/folder.png" height="40" width="40" alt="folder">
-            {{ folder }}
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  {% endfor %}
-  {% for file in dir_files %}
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <a href="{{(request.path + '/' if request.path != '/' else '') + file}}">
-          <img src="../static/img/file-icon.png" height="40" width="40" alt="file">
-            {{ file }}
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  {% endfor %}
+  <div class="create-popup">
+    <div class="create-popup-content">
+      <i class="fas fa-xmark" id="create-close"></i>
+      <h2>Nueva carpeta</h2>
+      <form action="http://192.168.1.47/create" method="post">
+        <input type="text" name="text" id="text"><br>
+        <input type="submit" value="Crear">
+      </form>
+      <p id="error_create"></p>
+    </div>
   </div>
+  <div class="list_content">
+    <table class="go-back">
+      <tbody>
+        <tr>
+          <td>
+            <a href="../">
+              <i class="fa-solid fa-circle-arrow-left"></i>
+              ..
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    {% for folder in dir_folders %}
+    <table class="folders">
+      <tbody>
+        <tr>
+          <td>
+            <a href="{{(request.path + '/' if request.path != '/' else '') + folder}}">
+              <i class="fa-solid fa-folder"></i>
+              {{ folder }}
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    {% endfor %}
+    {% for file in dir_files %}
+    <table class="files">
+      <tbody>
+        <tr>
+          <td>
+            <a href="{{(request.path + '/' if request.path != '/' else '') + file}}">
+              <i class="fa-solid fa-file"></i>
+              {{ file }}
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    {% endfor %}
+  </div>
+  <script src="{{url_for('static', filename='js/forms.js')}}"></script>
 </body>
 </html>
