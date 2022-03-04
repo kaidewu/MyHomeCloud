@@ -15,8 +15,10 @@
     <ul>
       <li>
         <a href="{{url_for('dir_list')}}">Mi unidad</a>
-        <a href="{{url_for('home')}}">Home</a>
-        <a href="{{url_for('logout')}}">Logout</a>
+        <a href="{{url_for('home')}}">Inicio</a>
+        <a href="{{url_for('logout')}}">Salir</a>
+        <a href="#" class="light-page" id="light-page"><i class="fa-solid fa-sun-bright"></i></a>
+        <a href="#" class="dark-page" id="dark-page"><i class="fa-solid fa-moon"></i></a>
       </li>
     </ul>
   </header>
@@ -42,8 +44,8 @@
       <i class="fas fa-xmark" id="create-close"></i>
       <h2>Nueva carpeta</h2>
       <form action="http://192.168.1.47/create" method="post">
-        <input type="text" name="text" id="text"><br>
-        <input type="submit" value="Crear">
+        <input type="text" name="text" id="text" placeholder="Carpeta sin nombre" style="text-size-adjust: auto;"><br>
+        <input type="submit" value="Crear" style="margin: 15px; padding: 0.5vh 1vh;">
       </form>
       <p id="error_create"></p>
     </div>

@@ -72,12 +72,8 @@ header ul li a.active{
     top: 17vh;
 }
 
-.container a{
-    text-align: right;
-}
-
 .upload-button{
-    background: rgb(48, 48, 104);
+    background: rgb(44, 44, 44);
     border-radius: 5px;
     box-shadow: 6px 6px 10px -4px rgb(172, 158, 158);
     padding: 5px 10px;
@@ -88,7 +84,7 @@ header ul li a.active{
 }
 
 .upload-button:hover{
-    background: rgb(48, 48, 104);
+    background: rgb(58, 58, 58);
     border-radius: 5px;
     box-shadow: 6px 6px 10px -4px rgb(172, 158, 158);
     padding: 7px 15px;
@@ -97,7 +93,7 @@ header ul li a.active{
 }
 
 .create-button{
-    background: rgb(48, 48, 104);
+    background: rgb(44, 44, 44);
     border-radius: 5px;
     box-shadow: 6px 6px 10px -4px rgb(172, 158, 158);
     padding: 5px 10px;
@@ -107,7 +103,7 @@ header ul li a.active{
 }
 
 .create-button:hover{
-    background: rgb(48, 48, 104);
+    background: rgb(58, 58, 58);
     border-radius: 5px;
     box-shadow: 6px 6px 10px -4px rgb(172, 158, 158);
     padding: 7px 15px;
@@ -192,7 +188,18 @@ header ul li a.active{
 
 .list_content{
     margin: 22vh 2%;
-    position: relative;
+}
+
+.list_content table{
+    width: 100%;
+}
+
+.list_content table:hover{
+    background-color: #3d3d3d;
+    border-radius: 10px;
+    margin: 0.5vh;
+    padding: 0.2vh 0.4vh;
+    transition: 0.4s;
 }
 
 .list_content a{
