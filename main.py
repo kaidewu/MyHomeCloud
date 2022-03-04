@@ -1,3 +1,4 @@
+from msilib.schema import MsiFileHash
 from flask import Flask, redirect, url_for, session, render_template, send_file, request
 from werkzeug.utils import secure_filename
 from flask_mysqldb import MySQL
@@ -112,7 +113,7 @@ def dir_list(req_path):
         dir_folders = []
         dir_files = []
         user_folder = f"{BASE_DIR}{session['foldername']}\\"
-        abs_path = os.path.join(user_folder, req_path)
+        abs_path = os.path.join(user_folder, req_path).replace('/', '\\')
         if len(abs_path_folder) == 10:
             abs_path_folder = []
         if os.path.isdir(abs_path):
@@ -151,8 +152,8 @@ def create_folder():
     global abs_path_folder
     if request.method == 'POST':
         name = request.form.get('text')
-        if name != '':
-            name_folder = os.path.join(abs_path_folder[-1], name)
+        name_folder = os.path.join(abs_path_folder[-1], name)
+        if name != '' and os.path.exists(name_folder) == False:
             os.mkdir(name_folder)
             abs_path_folder = []
             return redirect(url_for('dir_list'))

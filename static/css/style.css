@@ -125,7 +125,6 @@ header ul li a.active{
 .upload-popup-content{
     height: 40%;
     width: 50%;
-    padding: 20px;
     border-radius: 5px;
     background-color: #2c2c2c;
     position: relative;
@@ -133,22 +132,23 @@ header ul li a.active{
 
 .upload-popup-content h2{
     color: white;
-    margin: 10px;
+    padding: 2vh;
 }
 
 .upload-popup-content form{
-    margin: 50px;
+    padding: 2vh 3vh;
     color: white;
 }
 
 .upload-popup-content input{
-    margin: 10px 20px;
+    margin: 1vh 1.5vh;
 }
 
 .upload-popup-content i{
     float: right;
     color: white;
     cursor: pointer;
+    padding: 2vh;
 }
 
 .create-popup{
