@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.0.0/css/all.css">
+  <link rel="stylesheet" href="..{{ url_for('static', filename='css/style.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <title>Mi Unidad</title>
+</head>
+<body>
+  <header>
+    <a href="{{url_for('home')}}" class="my_unit">Unidad</a>
+    <ul>
+      <li>
+        <a href="{{url_for('dir_list')}}">Mi unidad</a>
+        <a href="{{url_for('home')}}">Inicio</a>
+        <a href="{{url_for('logout')}}">Salir</a>
+        <a href="#" class="light-page" id="light-page"><i class="fa-solid fa-sun-bright"></i></a>
+        <a href="#" class="dark-page" id="dark-page"><i class="fa-solid fa-moon"></i></a>
+      </li>
+    </ul>
+  </header>
+  <br>
+  <div class="container">
+    <a href="#" class="upload-button" id="upload-button">Upload</a>
+    <a href="#" class="create-button" id="create-button">Create Folder</a>
+  </div>
+  <div class="upload-popup">
+    <div class="upload-popup-content">
+      <i class="fas fa-xmark" id="upload-close"></i>
+      <h2>Subir archivos</h2>
+      <form action="{{url_for('upload_files')}}" method="post" enctype="multipart/form-data">
+        <p> Elije un archivo/s</p>
+        <input type="file" name="file" id="file" multiple><br>
+        <input type="submit" value="Upload">
+      </form>
+    </div>
+  </div>
+  <div class="create-popup">
+    <div class="create-popup-content">
+      <i class="fas fa-xmark" id="create-close"></i>
+      <h2>Nueva carpeta</h2>
+      <form action="http://192.168.1.47/create" method="post">
+        <input type="text" name="text" id="text" placeholder="Carpeta sin nombre" style="text-size-adjust: auto;"><br>
+        <input type="submit" value="Crear" style="margin: 15px; padding: 0.5vh 1vh;">
+      </form>
+    </div>
+  </div>
+  <div class="list_content">
+    <table class="go-back">
+      <tbody>
+        <tr>
+          <td>
+            <a href="../">
+              <i class="fa-solid fa-circle-arrow-left"></i>
+              ..
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    {% for folder in dir_folders %}
+    <table class="folders">
+      <tbody>
+        <tr>
+          <td>
+            <a href="{{(request.path + '/' if request.path != '/' else '') + folder}}">
+              <i class="fa-solid fa-folder"></i>
+              {{ folder }}
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    {% endfor %}
+    {% for file in dir_files %}
+    <table class="files">
+      <tbody>
+        <tr>
+          <td>
+            <a href="{{(request.path + '/' if request.path != '/' else '') + file}}">
+              <i class="fa-solid fa-file"></i>
+              {{ file }}
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    {% endfor %}
+  </div>
+  <script src="{{url_for('static', filename='js/forms.js')}}"></script>
+</body>
+</html>
