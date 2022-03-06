@@ -12,10 +12,10 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
   <title>Mi Unidad</title>
 </head>
-<body class="bg-light text-dark" id="body-content">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light static-top" style="display: block;" id="light-theme">
+<body class="bg-light" id="body-theme">
+  <nav class="navbar navbar-expand-lg static-top" id="navbar">
     <div class="container">
-      <a class="navbar-brand" href="{{url_for('home')}}">
+      <a class="navbar-brand" href="/">
         Unidad
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,17 +24,19 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{url_for('dir_list')}}">Mi Unidad</a>
+            <a class="nav-link active" aria-current="page" href="/">Mi Unidad</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{url_for('logout')}}">Salir</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" style="display: block; border: 2px solid transparent; border-radius: 10px; background-color: #FFCC80;" id="icon-dark">
             <a class="nav-link" href="#" id="darkSwitch">
               <img src="{{url_for('static', filename='img/moon-fill.svg')}}" alt="moon-fill" width="20px" height="20px">
+            </a>
+          </li>
+          <li class="nav-item" style="display: none; border: 2px solid transparent; border-radius: 10px; background-color: #9400FF;" id="icon-light">
+            <a class="nav-link" href="#" id="lightSwitch">
+              <img src="{{url_for('static', filename='img/brightness-high.svg')}}" alt="brightness-high" width="20px" height="20px">
             </a>
           </li>
         </ul>
@@ -42,7 +44,7 @@
     </div>
   </nav>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" style="display: none;" id="dark-theme">
+  <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" style="display: none;" id="dark-theme">
     <div class="container">
       <a class="navbar-brand" href="{{url_for('home')}}">
         Unidad
@@ -69,7 +71,7 @@
         </ul>
       </div>
     </div>
-  </nav>
+  </nav>-->
 
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#upload">
@@ -166,7 +168,6 @@
     </table>
     {% endfor %}
   </div>
-  <script src="{{url_for('static', filename='js/forms.js')}}"></script>
   <script src="{{url_for('static', filename='js/toggle-theme.js')}}"></script>
 </body>
 </html>
