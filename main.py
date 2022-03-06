@@ -150,15 +150,18 @@ def upload_files():
 @app.route('/create', methods = ['GET', 'POST'])
 def create_folder():
     global abs_path_folder
-    if request.method == 'POST':
-        name = request.form.get('text')
-        name_folder = os.path.join(abs_path_folder[-1], name)
-        if name != '' and os.path.exists(name_folder) == False:
-            os.mkdir(name_folder)
-            abs_path_folder = []
-            return redirect(url_for('dir_list'))
-        else:
-            return redirect(url_for('dir_list'))
+    try:
+        if request.method == 'POST':
+            name = request.form.get('text')
+            name_folder = os.path.join(abs_path_folder[-1], name)
+            if name != '' and os.path.exists(name_folder) == False:
+                os.mkdir(name_folder)
+                abs_path_folder = []
+                return redirect(url_for('dir_list'))
+            else:
+                return redirect(url_for('dir_list'))
+    except:
+        return render_template('404.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
