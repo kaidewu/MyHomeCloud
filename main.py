@@ -1,4 +1,3 @@
-from msilib.schema import MsiFileHash
 from flask import Flask, redirect, url_for, session, render_template, send_file, request
 from werkzeug.utils import secure_filename
 from flask_mysqldb import MySQL
@@ -6,6 +5,8 @@ from database import db
 import os
 import hashlib
 import re
+from datetime import datetime
+from hurry.filesize import size
 # Importamos el contenido de config.env
 from dotenv import load_dotenv
 load_dotenv('C:\\Users\\kayfe\\Desktop\\Github\\MyHomeCloud\\config.env')
@@ -105,7 +106,7 @@ def home():
     return redirect(url_for('login'))
 
 @app.route('/', defaults={'req_path': ''})
-@app.route('/<path:req_path>')
+@app.route('/<path:req_path>', methods = ['GET', 'POST'])
 def dir_list(req_path):
     if 'loggedin' in session:
         global BASE_DIR
@@ -130,7 +131,19 @@ def dir_list(req_path):
                     dir_files.append(f)
             except:
                 return render_template('404.html')
-        return render_template('content.html', dir_files=dir_files, dir_folders=dir_folders, abs_path_folder=abs_path_folder)
+            try:
+                dir_stats = os.stat(abs_file_path)
+                datetime_creation = datetime.utcfromtimestamp(dir_stats.st_ctime).strftime('%H:%M:%S %d-%m-%Y')
+                datetime_modification = datetime.utcfromtimestamp(dir_stats.st_mtime).strftime('%H:%M:%S %d-%m-%Y')
+                file_size = size(dir_stats.st_size)
+            except:
+                datetime_creation = '---'
+                datetime_modification = '---'
+                file_size = '---'
+        try:
+            return render_template('content.html', dir_files=dir_files, dir_folders=dir_folders, abs_path_folder=abs_path_folder, datetime_creation=datetime_creation, datetime_modification=datetime_modification, file_size=file_size)
+        except:
+            return render_template('content.html', dir_files=dir_files, dir_folders=dir_folders, abs_path_folder=abs_path_folder)
     else:
         return redirect(url_for('login'))
 

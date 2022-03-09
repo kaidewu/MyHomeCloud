@@ -12,8 +12,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
   <title>Mi Unidad</title>
 </head>
-<body class="bg-light" id="body-theme">
-  <nav class="navbar navbar-expand-lg static-top" id="navbar">
+<body class="bg-light text-black">
+  <nav class="navbar navbar-expand-lg static-top navbar-light">
     <div class="container">
       <a class="navbar-brand" href="/">
         Unidad
@@ -39,7 +39,7 @@
           </li>
           <li class="nav-item" style="display: none; border: 2px solid transparent; border-radius: 10px; background-color: #9400FF;" id="icon-light">
             <a class="nav-link" href="#" id="lightSwitch">
-              <img src="{{url_for('static', filename='img/brightness-high.svg')}}" alt="brightness-high" width="20px" height="20px">
+              <img src="{{ url_for('static', filename='img/brightness-high.svg') }}" alt="brightness-high" width="20px" height="20px">
             </a>
           </li>
         </ul>
@@ -100,7 +100,53 @@
     </div>
   </div>
 
-  <div class="list_content">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td>
+          <a href="../" class="loop-dir">
+            <i class="fa-solid fa-circle-arrow-left"></i>
+            ..
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Fecha de creación</th>
+        <th scope="col">Fecha de modificación</th>
+        <th scope="col">Tamaño</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for folder in dir_folders %}
+      <tr>
+        <th scope="row">
+          <a href="{{(request.path + '/' if request.path != '/' else '') + folder}}" class="loop-dir">
+            <img src="{{ url_for('static', filename='img/folder-icon.png') }}" alt="Folder" width="40" height="40">
+            {{ folder }}
+          </a>
+        </th>
+        <td>{{ datetime_creation }}</td>
+        <td>{{ datetime_modification }}</td>
+        <td>---</td>
+      </tr>
+      {% endfor %}
+      {% for file in dir_files %}
+      <tr>
+        <th scope="row">
+          <a href="{{(request.path + '/' if request.path != '/' else '') + file}}" class="loop-dir">
+            <img src="{{ url_for('static', filename='img/file-icon.png') }}" alt="File" width="40" height="40">
+            {{ file }}
+          </a>
+        </th>
+        <td>{{ datetime_creation }}</td>
+        <td>{{ datetime_modification }}</td>
+        <td>{{ file_size }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <!--<div class="list_content">
     <table class="go-back">
       <tbody>
         <tr>
@@ -141,7 +187,7 @@
       </tbody>
     </table>
     {% endfor %}
-  </div>
+  </div>-->
   <script src="{{url_for('static', filename='js/toggle-theme.js')}}"></script>
 </body>
 </html>
