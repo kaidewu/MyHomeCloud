@@ -51,10 +51,14 @@
     color: rgb(111, 111, 255);
 }
 
-.bg-dark{
-    color: white;
+.arrow-back{
+    margin: 1% 1%;
 }
 
-.bg-light{
-    color: black;
+.arrow-back a{
+    text-decoration: none;
+}
+
+.double-dots{
+    margin-top: 2%;
 }

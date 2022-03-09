@@ -32,7 +32,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{{url_for('logout')}}">Salir</a>
           </li>
-          <li class="nav-item" style="display: block; border: 2px solid transparent; border-radius: 10px; background-color: #FFCC80;" id="icon-dark">
+          <!--<li class="nav-item" style="display: block; border: 2px solid transparent; border-radius: 10px; background-color: #FFCC80;" id="icon-dark">
             <a class="nav-link" href="#" id="darkSwitch">
               <img src="{{url_for('static', filename='img/moon-fill.svg')}}" alt="moon-fill" width="20px" height="20px">
             </a>
@@ -41,7 +41,7 @@
             <a class="nav-link" href="#" id="lightSwitch">
               <img src="{{ url_for('static', filename='img/brightness-high.svg') }}" alt="brightness-high" width="20px" height="20px">
             </a>
-          </li>
+          </li>-->
         </ul>
       </div>
     </div>
@@ -100,16 +100,14 @@
     </div>
   </div>
 
-  <table class="table table-hover">
+  <div class="arrow-back">
+    <a href="../">
+      <img src="{{ url_for('static', filename='img/arrow-back-with-dots.png') }}" alt="Arrow Back" width="65" height="35">
+    </a>
+  </div>
+
+  <table class="table table-hover text-black">
     <thead>
-      <tr>
-        <td>
-          <a href="../" class="loop-dir">
-            <i class="fa-solid fa-circle-arrow-left"></i>
-            ..
-          </a>
-        </td>
-      </tr>
       <tr>
         <th scope="col">Nombre</th>
         <th scope="col">Fecha de creación</th>
