@@ -2,8 +2,8 @@ from msilib.schema import MsiFileHash
 from flask import Flask, redirect, url_for, session, render_template, send_file, request
 from werkzeug.utils import secure_filename
 from flask_mysqldb import MySQL
+from database import db
 import os
-import db
 import hashlib
 import re
 # Importamos el contenido de config.env
