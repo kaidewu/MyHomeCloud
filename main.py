@@ -155,6 +155,8 @@ def dir_list(req_path):
                     #file_example_time.append(datetime_modification)
                     #file_example_time.append(file_size)
                     dir_files.append(f)
+                else:
+                    return render_template('404.html')
             except:
                 return render_template('404.html')
         return render_template('content.html', dir_files=dir_files, dir_folders=dir_folders, abs_path_folder=abs_path_folder)
