@@ -31,13 +31,11 @@
 										<input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
 										<label for="floatingPassword">Contrasena</label>
 									</div>
-									<br>
-									<div class="msg" style="color: red;">{{ msg }}</div>
+									<div class="msg" style="color: red;"><br>{{ msg }}</div>
 									<br>
 									<button class="btn btn-primary btn-lg btn-block" type="submit">Registrarse</button>
 								</form>
 								<hr class="my-4">
-
 								<div>
 									<p class="mb-0">Ya tienes cuenta? <a href="{{ url_for('login') }}" class="text-black-50 fw-bold">Iniciar Sesion</a></p>
 								</div>

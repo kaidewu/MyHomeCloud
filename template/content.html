@@ -46,55 +46,53 @@
       </div>
     </div>
   </nav>
-
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#upload">
-    Upload
-  </button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="upload" tabindex="-1" aria-labelledby="upload" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="upload-form">Select files</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="{{url_for('upload_files')}}" method="post" enctype="multipart/form-data">
-            <label class="form-label" for="customFile">Upload</label>
-            <input type="file" name="file" id="customFile" class="form-control" multiple>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Upload</button>
-            </div>
-            </form>
+  <!-- BOTON DE CREAR CARPETA Y SUBIR FICHERIOS -->
+  <div style="margin: 0.5% 2%;">
+    <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#upload" style="background-color: rgb(84, 84, 204); border: none;">
+      Upload
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="upload" tabindex="-1" aria-labelledby="upload" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="upload-form">Select files</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="{{url_for('upload_files')}}" method="post" enctype="multipart/form-data">
+              <label class="form-label" for="customFile">Upload</label>
+              <input type="file" name="file" id="customFile" class="form-control" multiple>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Upload</button>
+              </div>
+              </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
-    Nueva carpeta
-  </button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="create" tabindex="-1" aria-labelledby="upload" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="create-form">Nueva carpeta</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="http://192.168.1.47/create" method="post">
-            <input type="text" name="text" id="text" class="form-control" placeholder="Carpeta sin nombre"><br>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Crear</button>
-            </div>
-            </form>
+    <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#create" style="background-color: rgb(84, 84, 204); border: none;">
+      Nueva carpeta
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="create" tabindex="-1" aria-labelledby="upload" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="create-form">Nueva carpeta</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="http://192.168.1.47/create" method="post">
+              <input type="text" name="text" id="text" class="form-control" placeholder="Carpeta sin nombre"><br>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Crear</button>
+              </div>
+              </form>
+          </div>
         </div>
       </div>
     </div>
@@ -106,7 +104,7 @@
     </a>
   </div>
 
-  <table class="table table-hover text-black">
+  <table class="table table-hover text-black" style="margin: 0 2%;">
     <thead>
       <tr>
         <th scope="col">Nombre</th>
@@ -119,7 +117,7 @@
       {% for folder in dir_folders %}
       <tr>
         <th scope="row">
-          <a href="{{(request.path + '/' if request.path != '/' else '') + folder}}" class="loop-dir">
+          <a href="{{(request.path + '/' if request.path != '/' else '') + folder}}" class="loop-dir" style="color: black;">
             <img src="{{ url_for('static', filename='img/folder-icon.png') }}" alt="Folder" width="40" height="40">
             {{ folder }}
           </a>

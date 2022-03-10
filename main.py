@@ -82,7 +82,7 @@ def register():
             folder_name = hashlib.sha256((username + email).encode('utf-8')).hexdigest().upper()
             db.fetchInsertUser(username, password, email, folder_name)
             os.mkdir(f'E:\\{folder_name}')
-            msg = 'You have successfully registered!'
+            return redirect(url_for('login'))
     elif request.method == 'POST':
         # Form is empty... (no POST data)
         msg = 'Please fill out the form!'
@@ -124,7 +124,7 @@ def dir_list(req_path):
         files = os.listdir(abs_path)
         for f in files:
             try:
-                abs_file_path = os.path.abspath(user_folder + f)
+                abs_file_path = os.path.abspath(abs_path + '\\' + f)
                 #dir_stats = os.stat(abs_file_path)
                 if os.path.isdir(abs_file_path):
                     # Pruebas
@@ -139,7 +139,7 @@ def dir_list(req_path):
                     #folder_example_time.append(datetime_creation)
                     #folder_example_time.append(datetime_modification)
                     dir_folders.append(f)
-                else:
+                elif os.path.isfile(abs_file_path):
                     # Pruebas
                     #file_example_time = []
                     #try:
@@ -157,7 +157,7 @@ def dir_list(req_path):
                     dir_files.append(f)
             except:
                 return render_template('404.html')
-            return render_template('content.html', dir_files=dir_files, dir_folders=dir_folders, abs_path_folder=abs_path_folder)
+        return render_template('content.html', dir_files=dir_files, dir_folders=dir_folders, abs_path_folder=abs_path_folder)
     else:
         return redirect(url_for('login'))
 
@@ -186,7 +186,7 @@ def create_folder():
                 abs_path_folder = []
                 return redirect(url_for('dir_list'))
             else:
-                return redirect(url_for('dir_list'))
+                return render_template('404.html')
     except:
         return render_template('404.html')
 
