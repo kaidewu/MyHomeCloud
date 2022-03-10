@@ -125,24 +125,38 @@ def dir_list(req_path):
         for f in files:
             try:
                 abs_file_path = os.path.abspath(user_folder + f)
+                #dir_stats = os.stat(abs_file_path)
                 if os.path.isdir(abs_file_path):
+                    # Pruebas
+                    #folder_example_time = []
+                    #try:
+                    #    datetime_creation = datetime.utcfromtimestamp(dir_stats.st_ctime).strftime('%H:%M:%S %d-%m-%Y')
+                    #    datetime_modification = datetime.utcfromtimestamp(dir_stats.st_mtime).strftime('%H:%M:%S %d-%m-%Y')
+                    #except:
+                    #    datetime_creation = '---'
+                    #    datetime_modification = '---'
+                    #folder_example_time.append(f)
+                    #folder_example_time.append(datetime_creation)
+                    #folder_example_time.append(datetime_modification)
                     dir_folders.append(f)
                 else:
+                    # Pruebas
+                    #file_example_time = []
+                    #try:
+                    #    datetime_creation = datetime.utcfromtimestamp(dir_stats.st_ctime).strftime('%H:%M:%S %d-%m-%Y')
+                    #    datetime_modification = datetime.utcfromtimestamp(dir_stats.st_mtime).strftime('%H:%M:%S %d-%m-%Y')
+                    #    file_size = size(dir_stats.st_size)
+                    #except:
+                    #    datetime_creation = '---'
+                    #    datetime_modification = '---'
+                    #   file_size = '---'
+                    #file_example_time.append(f)
+                    #file_example_time.append(datetime_creation)
+                    #file_example_time.append(datetime_modification)
+                    #file_example_time.append(file_size)
                     dir_files.append(f)
             except:
                 return render_template('404.html')
-            try:
-                dir_stats = os.stat(abs_file_path)
-                datetime_creation = datetime.utcfromtimestamp(dir_stats.st_ctime).strftime('%H:%M:%S %d-%m-%Y')
-                datetime_modification = datetime.utcfromtimestamp(dir_stats.st_mtime).strftime('%H:%M:%S %d-%m-%Y')
-                file_size = size(dir_stats.st_size)
-            except:
-                datetime_creation = '---'
-                datetime_modification = '---'
-                file_size = '---'
-        try:
-            return render_template('content.html', dir_files=dir_files, dir_folders=dir_folders, abs_path_folder=abs_path_folder, datetime_creation=datetime_creation, datetime_modification=datetime_modification, file_size=file_size)
-        except:
             return render_template('content.html', dir_files=dir_files, dir_folders=dir_folders, abs_path_folder=abs_path_folder)
     else:
         return redirect(url_for('login'))

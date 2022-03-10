@@ -124,8 +124,8 @@
             {{ folder }}
           </a>
         </th>
-        <td>{{ datetime_creation }}</td>
-        <td>{{ datetime_modification }}</td>
+        <td>Trabajando...</td>
+        <td>Trabajando...</td>
         <td>---</td>
       </tr>
       {% endfor %}
@@ -137,55 +137,13 @@
             {{ file }}
           </a>
         </th>
-        <td>{{ datetime_creation }}</td>
-        <td>{{ datetime_modification }}</td>
-        <td>{{ file_size }}</td>
+        <td>Trabajando...</td>
+        <td>Trabajando...</td>
+        <td>Trabajando...</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
-  <!--<div class="list_content">
-    <table class="go-back">
-      <tbody>
-        <tr>
-          <td>
-            <a href="../" class="loop-dir">
-              <i class="fa-solid fa-circle-arrow-left"></i>
-              ..
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    {% for folder in dir_folders %}
-    <table class="folders">
-      <tbody>
-        <tr>
-          <td>
-            <a href="{{(request.path + '/' if request.path != '/' else '') + folder}}" class="loop-dir">
-              <i class="fa-solid fa-folder"></i>
-              {{ folder }}
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    {% endfor %}
-    {% for file in dir_files %}
-    <table class="files">
-      <tbody>
-        <tr>
-          <td>
-            <a href="{{(request.path + '/' if request.path != '/' else '') + file}}" class="loop-dir">
-              <i class="fa-solid fa-file"></i>
-              {{ file }}
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    {% endfor %}
-  </div>-->
   <script src="{{url_for('static', filename='js/toggle-theme.js')}}"></script>
 </body>
 </html>
