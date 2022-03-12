@@ -1,54 +1,17 @@
-.list_content{
-    margin: 2% 2%;
+.navbar{
+    background-color: #FFF5F5;
 }
 
-.list_content table{
-    width: 100%;
+.navbar .container .navbar-brand i{
+    transform: rotate(-5deg);
 }
 
-.list_content table:hover{
-    border-radius: 10px;
-    margin: 0.5vh;
-    padding: 0.2vh 0.4vh;
-    transition: 0.4s;
+.navbar .container a :hover{
+    transform: none;
 }
 
-.loop-dir{
-    text-decoration: none;
-    font-size: medium;
-}
-
-.list_content a:hover{
-    color: rgb(65, 65, 65);
-}
-
-.list_content i{
-    text-decoration: none;
-    font-size: 1.5em;
-}
-
-.go-back{
-    margin: 5px 5px;
-}
-
-.go-back i{
-    font-size: 2em;
-}
-
-.folders{
-    margin: 10px 25px;
-}
-
-.folders i{
-    color: rgb(255, 251, 0);
-}
-
-.files{
-    margin: 10px 25px;
-}
-
-.files i{
-    color: rgb(111, 111, 255);
+.navbar .container .nav-item :hover{
+    text-decoration: underline;
 }
 
 .arrow-back{
@@ -62,3 +25,4 @@
 .double-dots{
     margin-top: 2%;
 }
+
