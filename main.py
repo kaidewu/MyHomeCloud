@@ -9,7 +9,8 @@ from datetime import datetime
 from hurry.filesize import size
 # Importamos el contenido de config.env
 from dotenv import load_dotenv
-load_dotenv('C:\\Users\\kayfe\\Desktop\\Github\\MyHomeCloud\\config.env')
+# Ruta donde este el fichero config.env
+load_dotenv('C:\\Users\\kayfe\\Desktop\\Github\\config.env')
 secret_key = os.environ.get('SECRET_KEY')
 mysql_user = os.environ.get('MYSQL_USER')
 mysql_password = os.environ.get('MYSQL_PASSWORD')
@@ -111,8 +112,9 @@ def dir_list(req_path):
     if 'loggedin' in session:
         global BASE_DIR
         global abs_path_folder
-        dir_folders = []
-        dir_files = []
+        dir_folders = {}
+        dir_files = {}
+        #folder_information = []
         user_folder = f"{BASE_DIR}{session['foldername']}\\"
         abs_path = os.path.join(user_folder, req_path).replace('/', '\\')
         if len(abs_path_folder) == 10:
@@ -123,42 +125,43 @@ def dir_list(req_path):
             return send_file(abs_path)
         files = os.listdir(abs_path)
         for f in files:
-            try:
-                abs_file_path = os.path.abspath(abs_path + '\\' + f)
-                #dir_stats = os.stat(abs_file_path)
-                if os.path.isdir(abs_file_path):
-                    # Pruebas
-                    #folder_example_time = []
-                    #try:
-                    #    datetime_creation = datetime.utcfromtimestamp(dir_stats.st_ctime).strftime('%H:%M:%S %d-%m-%Y')
-                    #    datetime_modification = datetime.utcfromtimestamp(dir_stats.st_mtime).strftime('%H:%M:%S %d-%m-%Y')
-                    #except:
-                    #    datetime_creation = '---'
-                    #    datetime_modification = '---'
-                    #folder_example_time.append(f)
-                    #folder_example_time.append(datetime_creation)
-                    #folder_example_time.append(datetime_modification)
-                    dir_folders.append(f)
-                elif os.path.isfile(abs_file_path):
-                    # Pruebas
-                    #file_example_time = []
-                    #try:
-                    #    datetime_creation = datetime.utcfromtimestamp(dir_stats.st_ctime).strftime('%H:%M:%S %d-%m-%Y')
-                    #    datetime_modification = datetime.utcfromtimestamp(dir_stats.st_mtime).strftime('%H:%M:%S %d-%m-%Y')
-                    #    file_size = size(dir_stats.st_size)
-                    #except:
-                    #    datetime_creation = '---'
-                    #    datetime_modification = '---'
-                    #   file_size = '---'
-                    #file_example_time.append(f)
-                    #file_example_time.append(datetime_creation)
-                    #file_example_time.append(datetime_modification)
-                    #file_example_time.append(file_size)
-                    dir_files.append(f)
-                else:
+            if f != '':
+                try:
+                    abs_file_path = os.path.abspath(abs_path + '\\' + f)
+                    dir_stats = os.stat(abs_file_path)
+                    if os.path.isdir(abs_file_path):
+                        # Pruebas
+                        dir_folders[f] = {}
+                        try:
+                            datetime_creation = datetime.utcfromtimestamp(dir_stats.st_ctime).strftime('%H:%M:%S %d-%m-%Y')
+                            datetime_modification = datetime.utcfromtimestamp(dir_stats.st_mtime).strftime('%H:%M:%S %d-%m-%Y')
+                        except:
+                            datetime_creation = '---'
+                            datetime_modification = '---'
+                        dir_folders[f]['name'] = f
+                        dir_folders[f]['ctime'] = datetime_creation
+                        dir_folders[f]['mtime'] = datetime_modification
+                        #dir_folders.append(folder_information)
+                    elif os.path.isfile(abs_file_path):
+                        # Pruebas
+                        dir_files[f] = {}
+                        try:
+                            datetime_creation = datetime.utcfromtimestamp(dir_stats.st_ctime).strftime('%H:%M:%S %d-%m-%Y')
+                            datetime_modification = datetime.utcfromtimestamp(dir_stats.st_mtime).strftime('%H:%M:%S %d-%m-%Y')
+                            file_size = size(dir_stats.st_size)
+                        except:
+                            datetime_creation = '---'
+                            datetime_modification = '---'
+                            file_size = '---'
+                        dir_files[f]['name'] = f
+                        dir_files[f]['ctime'] = datetime_creation
+                        dir_files[f]['mtime'] = datetime_modification
+                        dir_files[f]['size'] = file_size
+                        #dir_files.append(file_information)
+                    else:
+                        return render_template('404.html')
+                except:
                     return render_template('404.html')
-            except:
-                return render_template('404.html')
         return render_template('content.html', dir_files=dir_files, dir_folders=dir_folders, abs_path_folder=abs_path_folder)
     else:
         return redirect(url_for('login'))
