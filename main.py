@@ -2,11 +2,13 @@ from flask import Flask, redirect, url_for, session, render_template, send_file,
 from werkzeug.utils import secure_filename
 from flask_mysqldb import MySQL
 from database import db
+from datetime import datetime
+from hurry.filesize import size
 import os
 import hashlib
 import re
-from datetime import datetime
-from hurry.filesize import size
+
+
 # Importamos el contenido de config.env
 from dotenv import load_dotenv
 # Ruta donde este el fichero config.env
@@ -16,7 +18,9 @@ mysql_user = os.environ.get('MYSQL_USER')
 mysql_password = os.environ.get('MYSQL_PASSWORD')
 mysql_host = os.environ.get('MYSQL_HOST')
 mysql_db = os.environ.get('MYSQL_DB')
-BASE_DIR = "E:\\"
+BASE_DIR = os.environ.get('BASE_DIR')
+timezone = os.environ.get('TIMEZONE')
+
 abs_path_folder = []
 
 app = Flask(__name__,template_folder='template')
