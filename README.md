@@ -4,6 +4,10 @@ MyHomeCloud es un almacenamiento en la nube casero donde se ejecuta en local.
 En un principio solo se podrán conectarse los locales.
 
 ### Login/Register Page
+#### Login
+![Login](static/img/login-demo.png)
+#### Register
+![Register](static/img/register-demo.png)
 
 #### Primero hay que instalar los requerimientos
 python -m pip install -r requirement.txt
