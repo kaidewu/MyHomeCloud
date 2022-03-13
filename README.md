@@ -1,4 +1,4 @@
-## Mi proyecto de fin de grado.
+## Mi proyecto de fin de ciclo.
 MyHomeCloud es un almacenamiento en la nube casero donde se ejecuta en local.
 
 En un principio solo se podrán conectarse los locales.
@@ -10,8 +10,11 @@ En un principio solo se podrán conectarse los locales.
 ### My Unit Page
 ![Unit Page](static/img/demo-1.png)
 
+### Instalación
 #### Primero hay que instalar los requerimientos
+```
 python -m pip install -r requirement.txt
+```
 
 #### Necesitas estos programas para que funcione correctamente
 ##### Windows
