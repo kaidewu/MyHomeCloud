@@ -10,7 +10,7 @@ En un principio solo se podrán conectarse los locales.
 ![Register](static/img/register-demo.png)
 
 ### My Unit Page
-![Unit]](static/img/demo-1.png)
+
 
 #### Primero hay que instalar los requerimientos
 python -m pip install -r requirement.txt
