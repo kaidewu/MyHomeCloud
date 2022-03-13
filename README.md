@@ -3,11 +3,11 @@ MyHomeCloud es un almacenamiento en la nube casero donde se ejecuta en local.
 
 En un principio solo se podrán conectarse los locales.
 
-### Snapshots
-#### Login/Register Page
+### Capturas
+#### Página de Inicio de sesión y de Acceso
 ![Login](static/img/login-demo.png)
 
-### My Unit Page
+### Página principal
 ![Unit Page](static/img/demo-1.png)
 
 ### Instalación
