@@ -8,7 +8,6 @@ import os
 import hashlib
 import re
 
-
 # Importamos el contenido de config.env
 from dotenv import load_dotenv
 # Ruta donde este el fichero config.env
@@ -63,7 +62,7 @@ def login():
     # Show the login form with message (if any)
     return render_template('login.html', msg=msg)
 
-# http://192.168.1.47register - this will be the registration page, we need to use both GET and POST requests
+# http://192.168.1.47/register - Este va ser la pagina donde se van a registrar.
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     # Output message if something goes wrong...
