@@ -1,5 +1,13 @@
+body{
+    background-color: #FEEBC8;
+}
+
 .navbar{
-    background-color: #FFF5F5;
+    background-color: white;
+}
+
+.navbar .container .navbar-brand{
+    font-weight: bold;
 }
 
 .navbar .container .navbar-brand i{
@@ -15,7 +23,7 @@
 }
 
 .arrow-back{
-    margin: 1% 1%;
+    margin: 1em 1em;
 }
 
 .arrow-back a{
@@ -24,5 +32,9 @@
 
 .double-dots{
     margin-top: 2%;
+}
+
+.btn{
+    margin: 0.2em 0.5em;
 }
 
