@@ -115,30 +115,31 @@
       </tr>
     </thead>
     <tbody>
-      {% for folder in dir_folders %}
+      <!--La k en los for hay que ponerlo si o si, o sino no funciona-->
+      {% for k,folder in dir_folders.items() %}
       <tr>
         <th scope="row">
-          <a href="{{(request.path + '/' if request.path != '/' else '') + folder}}" class="loop-dir" style="color: black; text-decoration: none;">
+          <a href="{{(request.path + '/' if request.path != '/' else '') + folder.name}}" class="loop-dir" style="color: black; text-decoration: none;">
             <img src="{{ url_for('static', filename='img/folder-icon.png') }}" alt="Folder" width="40" height="40">
-            {{ folder }}
+            {{ folder.name }}
           </a>
         </th>
-        <td>Trabajando...</td>
-        <td>Trabajando...</td>
+        <td>{{ folder.ctime }}</td>
+        <td>{{ folder.mtime }}</td>
         <td>---</td>
       </tr>
       {% endfor %}
-      {% for file in dir_files %}
+      {% for k,file in dir_files.items() %}
       <tr>
         <th scope="row">
-          <a href="{{(request.path + '/' if request.path != '/' else '') + file}}" style="color: black; text-decoration: none;">
+          <a href="{{(request.path + '/' if request.path != '/' else '') + file.name}}" style="color: black; text-decoration: none;">
             <img src="{{ url_for('static', filename='img/file-icon.png') }}" alt="File" width="40" height="40">
-            {{ file }}
+            {{ file.name }}
           </a>
         </th>
-        <td>Trabajando...</td>
-        <td>Trabajando...</td>
-        <td>Trabajando...</td>
+        <td>{{ file.ctime }}</td>
+        <td>{{ file.mtime }}</td>
+        <td>{{ file.size }}</td>
       </tr>
       {% endfor %}
     </tbody>
