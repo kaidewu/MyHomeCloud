@@ -6,8 +6,6 @@ En un principio solo se podrán conectarse los locales.
 ### Snapshots
 #### Login
 ![Login](static/img/login-demo.png)
-#### Register
-![Register](static/img/register-demo.png)
 
 ### My Unit Page
 ![Unit Page](static/img/demo-1.png)
