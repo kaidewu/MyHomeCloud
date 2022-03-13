@@ -1,22 +1,20 @@
-## Mi proyecto de fin de ciclo.
-MyHomeCloud es un almacenamiento en la nube casero donde se ejecuta en local.
+# Project of CFGS ASIR
+MyHomeCloud is a cloud storage that works in local mode.
 
-En un principio solo se podrán conectarse los locales.
-
-### Capturas
-#### Página de Inicio de sesión y de Acceso
+### Snapshots
+#### Login/Register Page
 ![Login](static/img/login-demo.png)
 
-### Página principal
+### Main Page
 ![Unit Page](static/img/demo-1.png)
 
-### Instalación
-#### Primero hay que instalar los requerimientos
+## How to Run
+#### Install the requirements. You can use the following command:
 ```
 python -m pip install -r requirement.txt
 ```
 
-#### Necesitas estos programas para que funcione correctamente
+#### Need to install this following application:
 ##### Windows
 MySQL Installer: https://dev.mysql.com/downloads/installer/
 
