@@ -18,7 +18,7 @@ mysql_user = os.environ.get('MYSQL_USER')
 mysql_password = os.environ.get('MYSQL_PASSWORD')
 mysql_host = os.environ.get('MYSQL_HOST')
 mysql_db = os.environ.get('MYSQL_DB')
-BASE_DIR = os.environ.get('BASE_DIR')
+BASE_DIR = 'E:\\'
 timezone = os.environ.get('TIMEZONE')
 
 abs_path_folder = []
@@ -76,7 +76,8 @@ def register():
         email = request.form['email']
         # If account exists show error and validation checks
         if db.fetchUserexists(username, password):
-            msg = 'Account already exists!'
+            msg = 'Ya existe la cuenta!'
+            return render_template('login.html', msg=msg)
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
             msg = 'Invalid email address!'
         elif not re.match(r'[A-Za-z0-9]+', username):
@@ -87,7 +88,8 @@ def register():
             folder_name = hashlib.sha256((username + email).encode('utf-8')).hexdigest().upper()
             db.fetchInsertUser(username, password, email, folder_name)
             os.mkdir(f'E:\\{folder_name}')
-            return redirect(url_for('login'))
+            msg = 'La cuenta se ha creado correctamente!'
+            return render_template('login.html', msg=msg)
     elif request.method == 'POST':
         # Form is empty... (no POST data)
         msg = 'Please fill out the form!'
