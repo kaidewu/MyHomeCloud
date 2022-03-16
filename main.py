@@ -87,8 +87,8 @@ def register():
             folder_name = hashlib.sha256((username + email).encode('utf-8')).hexdigest().upper()
             db.fetchInsertUser(username, password, email, folder_name)
             os.mkdir(f'E:\\{folder_name}')
-            msg = 'La cuenta se ha creado correctamente!'
-            return render_template('login.html', msg=msg)
+            msg_verify = 'La cuenta se ha creado correctamente!'
+            return render_template('login.html', msg_verify=msg_verify)
     elif request.method == 'POST':
         # Form is empty... (no POST data)
         msg = 'Please fill out the form!'
