@@ -174,15 +174,18 @@ def dir_list(req_path):
 @app.route('/upload', methods = ['GET', 'POST'])
 def upload_files():
     global abs_path_folder
-    if request.method == 'POST':
-            f = request.files.getlist('file')
-            if f[0]:
-                for file in f:
-                    file.save(f'{abs_path_folder[-1]}\\{secure_filename(file.filename)}')
-                abs_path_folder = []
-                return redirect(url_for('dir_list'))
-            else:
-                return redirect(url_for('dir_list'))
+    try:
+        if request.method == 'POST':
+                f = request.files.getlist('file')
+                if f[0]:
+                    for file in f:
+                        file.save(f'{abs_path_folder[-1]}\\{secure_filename(file.filename)}')
+                    abs_path_folder = []
+                    return redirect(url_for('dir_list'))
+                else:
+                    return redirect(url_for('dir_list'))
+    except:
+        return render_template('404.html')
 
 @app.route('/create', methods = ['GET', 'POST'])
 def create_folder():
