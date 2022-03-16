@@ -18,7 +18,6 @@ mysql_password = os.environ.get('MYSQL_PASSWORD')
 mysql_host = os.environ.get('MYSQL_HOST')
 mysql_db = os.environ.get('MYSQL_DB')
 BASE_DIR = 'E:\\'
-timezone = os.environ.get('TIMEZONE')
 
 abs_path_folder = []
 
@@ -138,8 +137,8 @@ def dir_list(req_path):
                         # Pruebas
                         dir_folders[f] = {}
                         try:
-                            datetime_creation = datetime.utcfromtimestamp(dir_stats.st_ctime).strftime('%H:%M:%S %d-%m-%Y')
-                            datetime_modification = datetime.utcfromtimestamp(dir_stats.st_mtime).strftime('%H:%M:%S %d-%m-%Y')
+                            datetime_creation = datetime.fromtimestamp(dir_stats.st_ctime).strftime('%H:%M:%S %d-%m-%Y')
+                            datetime_modification = datetime.fromtimestamp(dir_stats.st_mtime).strftime('%H:%M:%S %d-%m-%Y')
                         except:
                             datetime_creation = '---'
                             datetime_modification = '---'
@@ -151,8 +150,8 @@ def dir_list(req_path):
                         # Pruebas
                         dir_files[f] = {}
                         try:
-                            datetime_creation = datetime.utcfromtimestamp(dir_stats.st_ctime).strftime('%H:%M:%S %d-%m-%Y')
-                            datetime_modification = datetime.utcfromtimestamp(dir_stats.st_mtime).strftime('%H:%M:%S %d-%m-%Y')
+                            datetime_creation = datetime.fromtimestamp(dir_stats.st_ctime).strftime('%H:%M:%S %d-%m-%Y')
+                            datetime_modification = datetime.fromtimestamp(dir_stats.st_mtime).strftime('%H:%M:%S %d-%m-%Y')
                             file_size = size(dir_stats.st_size)
                         except:
                             datetime_creation = '---'
