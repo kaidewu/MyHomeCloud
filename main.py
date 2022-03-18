@@ -116,7 +116,23 @@ def admin():
 def userlist():
     if 'loggedin' in session:
         user_info = {}
-        return render_template('userlist.html')
+        num_users = db.fetchCountUsers()
+        for i in range(7):
+            user_info[i] = {}
+            try:
+                id_number = db.fetchListUser()['id']
+                level = db.fetchListUser()['level']
+                users = db.fetchListUser()['username']
+                email = db.fetchListUser()['email']
+                foldername = db.fetchListUser()['folder_name']
+            except:
+                return render_template('404.html')
+            user_info[i]['id'] = id_number
+            user_info[i]['level'] = level
+            user_info[i]['users'] = users
+            user_info[i]['email'] = email
+            user_info[i]['foldername'] = foldername
+        return render_template('userlist.html', users=user_info)
     return redirect(url_for('login'))
 
 #Ruta de los usuarios normales

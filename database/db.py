@@ -49,3 +49,9 @@ def fetchCheckUser(id, username):
     cursor.execute('SELECT * FROM applogin.accounts WHERE id = %s AND username = %s', (id, username,))
     account = cursor.fetchone()
     return account
+
+def fetchUsernames():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('SELECT username FROM applogin.accounts')
+    users = cursor.fetchone()
+    return users
