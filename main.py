@@ -104,6 +104,22 @@ def logout():
    # Redirect to login page
    return redirect(url_for('login'))
 
+# Ruta de los administradores
+@app.route('/admin')
+def admin():
+    if 'loggedin' in session:
+        return render_template('admin.html', username=session['username'])
+    return redirect(url_for('login'))
+
+# Ruta de la lista de usuarios que hay resgistrado
+@app.route('/admin/users')
+def userlist():
+    if 'loggedin' in session:
+        user_info = {}
+        return render_template('userlist.html')
+    return redirect(url_for('login'))
+
+#Ruta de los usuarios normales
 @app.route('/home')
 def home():
     if 'loggedin' in session:

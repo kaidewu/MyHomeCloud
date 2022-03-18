@@ -4,6 +4,7 @@ body{
 
 .navbar{
     background-color: white;
+    position: fixed;
 }
 
 .navbar .container .navbar-brand{
