@@ -145,12 +145,14 @@ def home():
 @app.route('/', defaults={'req_path': ''})
 @app.route('/<path:req_path>', methods = ['GET', 'POST'])
 def dir_list(req_path):
+    global BASE_DIR
+    global abs_path_folder
+    dir_folders = {}
+    dir_files = {}
     if 'loggedin' in session:
-        global BASE_DIR
-        global abs_path_folder
-        dir_folders = {}
-        dir_files = {}
-        #folder_information = []
+        if (db.fetchCheckUser(session['id'], session['username'])['level'] == 'administrator'):
+            # Redirect to admin page
+            return redirect(url_for('admin'))
         user_folder = f"{BASE_DIR}{session['foldername']}\\"
         abs_path = os.path.join(user_folder, req_path).replace('/', '\\')
         if len(abs_path_folder) == 10:
