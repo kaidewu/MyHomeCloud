@@ -19,6 +19,25 @@ python -m pip install -r requirement.txt
 ##### Windows
 MySQL Installer: https://dev.mysql.com/downloads/installer/
 
-#### Linux
+    - Select MySQL Server and Workbench in the installation
+
+After the installation, connect to you MySQL and run this following SQL script:
+```
+CREATE DATABASE IF NOT EXISTS `applogin` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+```
+```
+USE `applogin`;
+DROP TABLE accounts;
+CREATE TABLE IF NOT EXISTS `accounts` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+    `level` varchar(20) NOT NULL DEFAULT('user'),
+  	`username` varchar(50) NOT NULL,
+  	`password` varchar(255) NOT NULL,
+  	`email` varchar(100) NOT NULL,
+    `folder_name` varchar(1000) NOT NULL,
+    CONSTRAINT UserID_folder PRIMARY KEY (`id`, `folder_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+```
+##### Linux
 ##### Ubuntu/Debian/PopOS/...
 $ sudo apt-get install mysql-server
