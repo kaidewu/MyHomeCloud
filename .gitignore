@@ -1,3 +1,4 @@
 # Delete python cache folder
 __pycache__
 
+*.env
