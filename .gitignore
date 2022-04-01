@@ -1,4 +1,4 @@
-# Delete python cache folder
+# Ignore python cache folder
 __pycache__
 
 *.env
