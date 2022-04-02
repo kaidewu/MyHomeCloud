@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 ```
 Got to config.env file and [**edit them**](config.env).
+
 > **For now, only works on Windows**
 #### Linux
 ##### Ubuntu/Debian/PopOS/...
