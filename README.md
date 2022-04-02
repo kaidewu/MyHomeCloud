@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
     CONSTRAINT UserID_folder PRIMARY KEY (`id`, `folder_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 ```
-Got to config.env file, copy the following lines into it and **edit them**:
+Create a config.env file, copy the following lines into it and **edit them**:
 ```
 export SECRET_KEY="YOUR SECRET KEY"
 export MYSQL_USER="MYSQL USERNAME"
