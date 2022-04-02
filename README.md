@@ -27,7 +27,7 @@ CREATE DATABASE IF NOT EXISTS `applogin` DEFAULT CHARACTER SET utf8 COLLATE utf8
 ```
 ```
 USE `applogin`;
-DROP TABLE accounts;
+DROP TABLE IF EXISTS accounts;
 CREATE TABLE IF NOT EXISTS `accounts` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
     	`level` varchar(20) NOT NULL DEFAULT('user'),
@@ -41,7 +41,6 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 ##### Linux
 ##### Ubuntu/Debian/PopOS/...
 $ sudo apt-get install mysql-server
-
 ##### ArchLinux/Manjaro...
 $ sudo pacman -S mysql-server
 
@@ -51,7 +50,7 @@ CREATE DATABASE IF NOT EXISTS `applogin` DEFAULT CHARACTER SET utf8 COLLATE utf8
 ```
 ```
 USE `applogin`;
-DROP TABLE accounts;
+DROP TABLE IF EXISTS accounts;
 CREATE TABLE IF NOT EXISTS `accounts` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
     `level` varchar(20) NOT NULL DEFAULT('user'),
