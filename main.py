@@ -10,14 +10,18 @@ import re
 
 # Importamos el contenido de config.env
 from dotenv import load_dotenv
-# Ruta donde este el fichero config.env
+# Ruta en Windows donde este el fichero config.env
 load_dotenv('C:\\Users\\kayfe\\Desktop\\Github\\myhomecloud\\config.env')
+
+# Ruta en Linux donde este el fichero config.env
+#load_dotenv('/home/YourUsername/myhomecloud/config.env')
+
 secret_key = os.environ.get('SECRET_KEY')
 mysql_user = os.environ.get('MYSQL_USER')
 mysql_password = os.environ.get('MYSQL_PASSWORD')
 mysql_host = os.environ.get('MYSQL_HOST')
 mysql_db = os.environ.get('MYSQL_DB')
-BASE_DIR = 'E:\\'
+BASE_DIR = os.environ.get('BASE_DIR')
 
 abs_path_folder = []
 
@@ -49,12 +53,15 @@ def login():
             session['username'] = db.fetchUserexists(username, password)['username']
             session['foldername'] = db.fetchFolderName(session['id'], session['username'])['folder_name']
             abs_path_folder.append(f"{BASE_DIR}{session['foldername']}\\")
+            """
             if (db.fetchUserexists(username, password)['level'] == 'administrator'):
                 # Redirect to admin page
                 return redirect(url_for('admin'))
             else:
                 # Redirect to home page
                 return redirect(url_for('home'))
+            """
+            return redirect(url_for('home'))
         else:
             # Account doesnt exist or username/password incorrect
             msg = 'Incorrect username/password!'
@@ -85,7 +92,7 @@ def register():
         else:
             folder_name = hashlib.sha256((username + email).encode('utf-8')).hexdigest().upper()
             db.fetchInsertUser(username, password, email, folder_name)
-            os.mkdir(f'E:\\{folder_name}')
+            os.mkdir(f'{BASE_DIR}{folder_name}')
             msg_verify = 'La cuenta se ha creado correctamente!'
             return render_template('login.html', msg_verify=msg_verify)
     elif request.method == 'POST':
@@ -104,6 +111,7 @@ def logout():
    # Redirect to login page
    return redirect(url_for('login'))
 
+"""
 # Ruta de los administradores
 @app.route('/admin')
 def admin():
@@ -134,6 +142,7 @@ def userlist():
             user_info[i]['foldername'] = foldername
         return render_template('userlist.html', users=user_info)
     return redirect(url_for('login'))
+"""
 
 #Ruta de los usuarios normales
 @app.route('/home')
@@ -150,9 +159,11 @@ def dir_list(req_path):
     dir_folders = {}
     dir_files = {}
     if 'loggedin' in session:
+        """
         if (db.fetchCheckUser(session['id'], session['username'])['level'] == 'administrator'):
             # Redirect to admin page
             return redirect(url_for('admin'))
+        """
         user_folder = f"{BASE_DIR}{session['foldername']}\\"
         abs_path = os.path.join(user_folder, req_path).replace('/', '\\')
         if len(abs_path_folder) == 10:
