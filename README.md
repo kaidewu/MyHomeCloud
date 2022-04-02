@@ -38,6 +38,16 @@ CREATE TABLE IF NOT EXISTS `accounts` (
     CONSTRAINT UserID_folder PRIMARY KEY (`id`, `folder_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 ```
+Create the config.env file, copy the following lines inside and edit :
+```
+export SECRET_KEY="YOUR SECRET KEY"
+export MYSQL_USER="MYSQL USERNAME"
+export MYSQL_PASSWORD="MYSQL PASSWORD"
+export MYSQL_HOST="MYSQL HOST"
+export MYSQL_DB="MYSQL DATABASE NAME"
+export BASE_DIR="PATH WHERE YOU WANT TO STORAGE"
+```
+
 ##### Linux
 ##### Ubuntu/Debian/PopOS/...
 $ sudo apt-get install mysql-server
