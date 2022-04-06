@@ -15,7 +15,7 @@ python -m pip install -r requirement.txt
 ```
 
 Need to install this following application:
-## MySQL
+### MySQL
 ### Windows
 MySQL Installer: https://dev.mysql.com/downloads/installer/
 
