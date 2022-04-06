@@ -49,11 +49,11 @@ export BASE_DIR="PATH WHERE YOU WANT TO STORAGE"
 ```
 > **For now, only works on Windows**
 #### Linux
-##### Ubuntu/Debian/PopOS/...
+**Ubuntu/Debian/PopOS/...**
 ```
 $ sudo apt-get install mysql-server
 ```
-##### ArchLinux/Manjaro...
+**ArchLinux/Manjaro...**
 ```
 $ sudo pacman -S mysql-server
 ```
