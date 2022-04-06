@@ -50,10 +50,13 @@ export BASE_DIR="PATH WHERE YOU WANT TO STORAGE"
 > **For now, only works on Windows**
 #### Linux
 ##### Ubuntu/Debian/PopOS/...
+```
 $ sudo apt-get install mysql-server
+```
 ##### ArchLinux/Manjaro...
+```
 $ sudo pacman -S mysql-server
-
+```
 Configure your MySQL Server and run this following SQL script:
 ```
 CREATE DATABASE IF NOT EXISTS `applogin` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
