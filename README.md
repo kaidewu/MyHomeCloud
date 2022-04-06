@@ -8,15 +8,15 @@ MyHomeCloud is a cloud storage that works in local mode.
 ### Main Page
 ![Unit Page](static/img/demo-1.png)
 
-## How to Run
-#### Install the requirements. You can use the following command:
+# How to Run
+Install the requirements. You can use the following command:
 ```
 python -m pip install -r requirement.txt
 ```
 
-#### Need to install this following application:
-#### MySQL
-#### Windows
+Need to install this following application:
+## MySQL
+### Windows
 MySQL Installer: https://dev.mysql.com/downloads/installer/
 
     - Select MySQL Server and Workbench in the installation
@@ -48,7 +48,7 @@ export MYSQL_DB="MYSQL DATABASE NAME"
 export BASE_DIR="PATH WHERE YOU WANT TO STORAGE"
 ```
 > **For now, only works on Windows**
-#### Linux
+### Linux
 **Ubuntu/Debian/PopOS/...**
 ```
 $ sudo apt-get install mysql-server
