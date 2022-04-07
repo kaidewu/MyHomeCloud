@@ -12,5 +12,7 @@ def get_platform():
 
 if get_platform() == 'Windows':
     os.system('python Windows\\main.py')
-else:
+elif get_platform() == 'Linux':
     os.system('python Linux/main.py')
+else:
+    print('Unsupported platform')
