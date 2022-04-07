@@ -11,10 +11,10 @@ import re
 # Importamos el contenido de config.env
 from dotenv import load_dotenv
 # Ruta en Windows donde este el fichero config.env
-load_dotenv('C:\\Users\\kayfe\\Desktop\\Github\\myhomecloud\\config.env')
+#load_dotenv('C:\\Users\\kayfe\\Desktop\\Github\\myhomecloud\\config.env')
 
 # Ruta en Linux donde este el fichero config.env
-#load_dotenv('/home/YourUsername/myhomecloud/config.env')
+load_dotenv('/home/YourUsername/myhomecloud/config.env') #Or the path where you saved it
 
 secret_key = os.environ.get('SECRET_KEY')
 mysql_user = os.environ.get('MYSQL_USER')
@@ -52,7 +52,7 @@ def login():
             session['id'] = db.fetchUserexists(username, password)['id']
             session['username'] = db.fetchUserexists(username, password)['username']
             session['foldername'] = db.fetchFolderName(session['id'], session['username'])['folder_name']
-            abs_path_folder.append(f"{BASE_DIR}{session['foldername']}\\")
+            abs_path_folder.append(f"{BASE_DIR}{session['foldername']}/")
             """
             if (db.fetchUserexists(username, password)['level'] == 'administrator'):
                 # Redirect to admin page
@@ -164,8 +164,8 @@ def dir_list(req_path):
             # Redirect to admin page
             return redirect(url_for('admin'))
         """
-        user_folder = f"{BASE_DIR}{session['foldername']}\\"
-        abs_path = os.path.join(user_folder, req_path).replace('/', '\\')
+        user_folder = f"{BASE_DIR}{session['foldername']}/"
+        abs_path = os.path.join(user_folder, req_path)
         if len(abs_path_folder) == 10:
             abs_path_folder = []
         if os.path.isdir(abs_path):
@@ -176,7 +176,7 @@ def dir_list(req_path):
         for f in files:
             if f != '':
                 try:
-                    abs_file_path = os.path.abspath(abs_path + '\\' + f)
+                    abs_file_path = os.path.abspath(abs_path + '/' + f)
                     dir_stats = os.stat(abs_file_path)
                     if os.path.isdir(abs_file_path):
                         # Pruebas
@@ -223,7 +223,7 @@ def upload_files():
                 f = request.files.getlist('file')
                 if f[0]:
                     for file in f:
-                        file.save(f'{abs_path_folder[-1]}\\{secure_filename(file.filename)}')
+                        file.save(f'{abs_path_folder[-1]}/{secure_filename(file.filename)}')
                     abs_path_folder = []
                     return redirect(url_for('dir_list'))
                 else:
