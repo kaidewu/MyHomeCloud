@@ -1,0 +1,41 @@
+body{
+    background-color: #FEEBC8;
+}
+
+.navbar{
+    background-color: white;
+    position: fixed;
+}
+
+.navbar .container .navbar-brand{
+    font-weight: bold;
+}
+
+.navbar .container .navbar-brand i{
+    transform: rotate(-5deg);
+}
+
+.navbar .container a :hover{
+    transform: none;
+}
+
+.navbar .container .nav-item :hover{
+    text-decoration: underline;
+}
+
+.arrow-back{
+    margin: 1em 1em;
+}
+
+.arrow-back a{
+    text-decoration: none;
+}
+
+.double-dots{
+    margin-top: 2%;
+}
+
+.btn{
+    margin: 0.2em 0.5em;
+}
+
