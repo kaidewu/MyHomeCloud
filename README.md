@@ -3,10 +3,10 @@ MyHomeCloud is a cloud storage that works in local mode.
 
 ### Snapshots
 #### Login/Register Page
-![Login](static/img/login-demo.png)
+![Login](docs/login-demo.png)
 
 ### Main Page
-![Unit Page](static/img/demo-1.png)
+![Unit Page](docs/demo-1.png)
 
 # How to Run
 Install the requirements. You can use the following command:
