@@ -2,6 +2,7 @@ import sys, os
 
 def get_platform():
     platforms = {
+        'linux': 'Linux',
         'linux1': 'Linux',
         'linux2': 'Linux',
         'win32': 'Windows'
