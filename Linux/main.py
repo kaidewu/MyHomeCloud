@@ -42,12 +42,12 @@ def login():
     msg = ''
     # Comprovamos si "username" y "password" POST request existe (los datos los recogemos de los formularios)
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
-        # Create variables for easy access
+        # Crear variables para facilitar el acceso
         username = request.form['username']
         password = hashlib.sha256((request.form['password']).encode('utf-8')).hexdigest().upper()
-        # If account exists in accounts table in out database
+        # Si la cuenta existe en la tabla de cuentas de nuestra base de datos
         if db.fetchUserexists(username, password):
-            # Create session data, we can access this data in other routes
+            # Crear datos de sesión, podemos acceder a estos datos en otras rutas
             session['loggedin'] = True
             session['id'] = db.fetchUserexists(username, password)['id']
             session['username'] = db.fetchUserexists(username, password)['username']
@@ -63,23 +63,23 @@ def login():
             """
             return redirect(url_for('home'))
         else:
-            # Account doesnt exist or username/password incorrect
+            # La cuenta no existe o el nombre de usuario/contraseña es incorrecto
             msg = 'Incorrect username/password!'
-    # Show the login form with message (if any)
+    # Mostrar el formulario de inicio de sesión con mensaje (si lo hay)
     return render_template('login.html', msg=msg)
 
 # http://192.168.1.47/register - Este va ser la pagina donde se van a registrar.
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    # Output message if something goes wrong...
+    # Mensaje de salida si algo va mal...
     msg = ''
-    # Check if "username", "password" and "email" POST requests exist (user submitted form)
+    # Comprobar si existen solicitudes POST de "nombre de usuario", "contraseña" y "correo electrónico" (formulario enviado por el usuario)
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
-        # Create variables for easy access
+        # Crear variables para facilitar el acceso
         username = request.form['username']
         password = hashlib.sha256((request.form['password']).encode('utf-8')).hexdigest().upper()
         email = request.form['email']
-        # If account exists show error and validation checks
+        # Si la cuenta existe muestre un mensaje ya que no se puede registrar dos veces el mismo usuario
         if db.fetchUserexists(username, password):
             msg = 'Ya existe la cuenta!'
             return render_template('login.html', msg=msg)
@@ -96,19 +96,19 @@ def register():
             msg_verify = 'La cuenta se ha creado correctamente!'
             return render_template('login.html', msg_verify=msg_verify)
     elif request.method == 'POST':
-        # Form is empty... (no POST data)
+        # Mensaje de error si no se rellenan los campos
         msg = 'Please fill out the form!'
-    # Show registration form with message (if any)
+    # Mostrar el formulario de registro con el mensaje (si lo hay)
     return render_template('register.html', msg=msg)
 
-# http://192.168.1.47/logout - this will be the logout page
+# Esta será la página de cierre de sesión
 @app.route('/logout')
 def logout():
-    # Remove session data, this will log the user out
+    # Eliminar los datos de la sesión, esto hará que el usuario cierre la sesión
    session.pop('loggedin', None)
    session.pop('id', None)
    session.pop('username', None)
-   # Redirect to login page
+   # Redirigir a la página de inicio de sesión
    return redirect(url_for('login'))
 
 """
@@ -144,13 +144,14 @@ def userlist():
     return redirect(url_for('login'))
 """
 
-#Ruta de los usuarios normales
+# Ruta de los usuarios normales
 @app.route('/home')
 def home():
     if 'loggedin' in session:
         return redirect(url_for('dir_list'))
     return redirect(url_for('login'))
 
+# Ruta principal del directorio
 @app.route('/', defaults={'req_path': ''})
 @app.route('/<path:req_path>', methods = ['GET', 'POST'])
 def dir_list(req_path):
@@ -179,7 +180,7 @@ def dir_list(req_path):
                     abs_file_path = os.path.abspath(abs_path + '/' + f)
                     dir_stats = os.stat(abs_file_path)
                     if os.path.isdir(abs_file_path):
-                        # Pruebas
+                        # Información de los directorios (nombre, fecha de creación, fecha de modificación)
                         dir_folders[f] = {}
                         try:
                             datetime_creation = datetime.fromtimestamp(dir_stats.st_ctime).strftime('%H:%M:%S %d-%m-%Y')
@@ -190,9 +191,8 @@ def dir_list(req_path):
                         dir_folders[f]['name'] = f
                         dir_folders[f]['ctime'] = datetime_creation
                         dir_folders[f]['mtime'] = datetime_modification
-                        #dir_folders.append(folder_information)
                     elif os.path.isfile(abs_file_path):
-                        # Pruebas
+                        # Información de los ficheros (nombre, tamaño, fecha de creación, fecha de modificación)
                         dir_files[f] = {}
                         try:
                             datetime_creation = datetime.fromtimestamp(dir_stats.st_ctime).strftime('%H:%M:%S %d-%m-%Y')
@@ -206,7 +206,6 @@ def dir_list(req_path):
                         dir_files[f]['ctime'] = datetime_creation
                         dir_files[f]['mtime'] = datetime_modification
                         dir_files[f]['size'] = file_size
-                        #dir_files.append(file_information)
                     else:
                         return render_template('404.html')
                 except:
@@ -215,6 +214,7 @@ def dir_list(req_path):
     else:
         return redirect(url_for('login'))
 
+# Ruta de la subida de ficheros
 @app.route('/upload', methods = ['GET', 'POST'])
 def upload_files():
     global abs_path_folder
@@ -231,6 +231,7 @@ def upload_files():
     except:
         return render_template('404.html')
 
+# Ruta de la creación de directorios
 @app.route('/create', methods = ['GET', 'POST'])
 def create_folder():
     global abs_path_folder
