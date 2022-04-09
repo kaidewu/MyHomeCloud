@@ -65,7 +65,7 @@ USE `applogin`;
 DROP TABLE IF EXISTS accounts;
 CREATE TABLE IF NOT EXISTS `accounts` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
-    `level` varchar(20) NOT NULL DEFAULT('user'),
+    	`level` varchar(20) NOT NULL DEFAULT('user'),
   	`username` varchar(50) NOT NULL,
   	`password` varchar(255) NOT NULL,
   	`email` varchar(100) NOT NULL,
