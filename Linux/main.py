@@ -11,10 +11,10 @@ import re
 # Importamos el contenido de config.env
 from dotenv import load_dotenv
 # Ruta en Windows donde este el fichero config.env
-#load_dotenv('C:\\Users\\kayfe\\Desktop\\Github\\myhomecloud\\config.env')
+#load_dotenv('C:\\Users\\kayfe\\Desktop\\Github\\myhomecloud\\config.env') # Or the path where you saved it
 
 # Ruta en Linux donde este el fichero config.env
-load_dotenv('/home/YourUsername/myhomecloud/config.env') #Or the path where you saved it
+load_dotenv('/home/YourUsername/myhomecloud/config.env') # Or the path where you saved it
 
 secret_key = os.environ.get('SECRET_KEY')
 mysql_user = os.environ.get('MYSQL_USER')
