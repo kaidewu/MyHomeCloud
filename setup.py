@@ -14,6 +14,6 @@ def get_platform():
 if get_platform() == 'Windows':
     os.system('python Windows\\main.py')
 elif get_platform() == 'Linux':
-    os.system('python Linux/main.py')
+    os.system('sudo python Linux/main.py')
 else:
     print('Unsupported platform')
