@@ -3,4 +3,4 @@ flask-mysqldb==1.0.1
 python-dotenv==0.19.2
 Jinja2==3.0.1
 Werkzeug==2.0.1
-pytz
+hurry.filesize==0.9
