@@ -11,7 +11,7 @@ import re
 # Importamos el contenido de config.env
 from dotenv import load_dotenv
 # Ruta en Windows donde este el fichero config.env
-load_dotenv('') # Ruta donde lo guardaste
+load_dotenv('C:\\Users\\kayfe\\Desktop\\Github\\MyHomeCloud\\config.env') # Ruta donde lo guardaste
 
 secret_key = os.environ.get('SECRET_KEY')
 mysql_user = os.environ.get('MYSQL_USER')
@@ -245,4 +245,4 @@ def create_folder():
         return render_template('404.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.run(host='0.0.0.0', port=80, debug=True, ssl_context='adhoc')
