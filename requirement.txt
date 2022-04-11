@@ -5,3 +5,5 @@ Jinja2==3.0.1
 Werkzeug==2.0.1
 hurry.filesize==0.9
 cffi
+OpenSSL
+ssl
