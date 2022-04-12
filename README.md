@@ -6,8 +6,8 @@ MyHomeCloud is a cloud storage that works in local mode.
 2. [How To Run](#howtorun)
 	1. [Windows](#windows)
 	2. [Linux](#linux)
-### Snapshots <a name="snapshots"></a>
-#### Login/Register Page
+## Snapshots <a name="snapshots"></a>
+### Login/Register Page
 ![Login](docs/login-demo.png)
 
 ### Main Page
