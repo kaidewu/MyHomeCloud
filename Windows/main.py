@@ -249,5 +249,5 @@ def create_folder():
 
 if __name__ == '__main__':
      context = ssl.Context(SSL.PROTOCOL_TLS_SERVER)
-     context.load_cert_chain('/home/Username/myhomecloud/certs/key.pem', '/home/Username/myhomecloud/certs/cert.pem')
+     context.load_cert_chain('C:\\Users\\Username\\myhomecloud\\certs\\key.pem', 'C:\\Users\\Username\\myhomecloud\\certs\\cert.pem') # O la ruta donde has guardado los certificados
      app.run(host='0.0.0.0', port=443, debug=True, ssl_context=context)
