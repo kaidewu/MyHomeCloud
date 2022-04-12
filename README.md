@@ -1,7 +1,7 @@
 # Project of CFGS ASIR
 MyHomeCloud is a cloud storage that works in local mode.
 
-**Index**
+## **Index**
 1. [Snapshots](#snapshots)
 2. [How To Run](#howtorun)
 	1. [Windows](#windows)
