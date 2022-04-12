@@ -1,22 +1,25 @@
 # Project of CFGS ASIR
 MyHomeCloud is a cloud storage that works in local mode.
-
-### Snapshots
+**Index**
+1. [Snapshots](#snapshots)
+2. [How To Run](#howtorun)
+2.1 [Windows](#windows)
+2.2 [Linux](#linux)
+### Snapshots <a name="snapshots"></a>
 #### Login/Register Page
 ![Login](docs/login-demo.png)
 
 ### Main Page
 ![Unit Page](docs/demo-1.png)
 
-# How to Run
+# How to Run <a name="howtorun"></a>
 Install the requirements. You can use the following command:
 ```
 python -m pip install -r requirement.txt
 ```
 
 Need to install this following application:
-### MySQL
-### Windows
+### Windows <a name="windows"></a>
 MySQL Installer: https://dev.mysql.com/downloads/installer/
 
     - Select MySQL Server and Workbench in the installation
@@ -47,7 +50,7 @@ export MYSQL_HOST="MYSQL HOST"
 export MYSQL_DB="MYSQL DATABASE NAME"
 export BASE_DIR="PATH WHERE YOU WANT TO STORAGE"
 ```
-### Linux
+### Linux <a name="linux"></a>
 **Ubuntu/Debian/PopOS/...**
 ```
 $ sudo apt-get install mysql-server
