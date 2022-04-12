@@ -51,7 +51,7 @@ export BASE_DIR="PATH WHERE YOU WANT TO STORAGE"
 ```
 Now we need to generate some certificate for the website. I'm using this [repository](https://github.com/FiloSottile/mkcert) to generate the certificate more easily.
 
-Follow the installation on they repository and run the following sentences:
+Follow the installation on they repository and then run the following sentences:
 ```
 mkcert -key-file key.pem -cert-file cert.pem myhomecloud.com *.myhomecloud.com
 ```
@@ -93,7 +93,7 @@ export BASE_DIR="PATH WHERE YOU WANT TO STORAGE"
 ```
 Now we need to generate some certificate for the website. I'm using this [repository](https://github.com/FiloSottile/mkcert) to generate the certificate more easily.
 
-Follow the installation on they repository and run the following sentences:
+Follow the installation on they repository and then run the following sentences:
 ```
 mkcert -key-file key.pem -cert-file cert.pem myhomecloud.com *.myhomecloud.com
 ```
