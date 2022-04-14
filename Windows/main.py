@@ -7,6 +7,10 @@ from hurry.filesize import size
 import os
 import hashlib
 import re
+import socket
+
+# Sacar la IP de este equipo
+ip = socket.gethostbyname(socket.gethostname())
 
 # Importamos el contenido de config.env
 from dotenv import load_dotenv
@@ -208,7 +212,7 @@ def dir_list(req_path):
                         return render_template('404.html')
                 except:
                     return render_template('404.html')
-        return render_template('content.html', dir_files=dir_files, dir_folders=dir_folders, abs_path_folder=abs_path_folder)
+        return render_template('content.html', dir_files=dir_files, dir_folders=dir_folders, abs_path_folder=abs_path_folder, ip = ip)
     else:
         return redirect(url_for('login'))
 
