@@ -12,7 +12,9 @@ import ssl
 import socket
 
 # Sacar la IP de este equipo
-ip = socket.gethostbyname(socket.gethostname())
+s=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect(('google.com',80))
+ip = s.getsockname()[0]
 
 ssl.PROTOCOL_TLS_SERVER
 # Importamos el contenido de config.env
