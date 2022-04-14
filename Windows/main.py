@@ -7,6 +7,8 @@ from hurry.filesize import size
 import os
 import hashlib
 import re
+from flask_sslify import SSLify
+import ssl
 import socket
 
 # Sacar la IP de este equipo
@@ -27,6 +29,7 @@ BASE_DIR = os.environ.get('BASE_DIR')
 abs_path_folder = []
 
 app = Flask(__name__,template_folder='template')
+sslify = SSLify(app)
 app.secret_key = secret_key
 
 # Conexion a la base de datos
@@ -249,4 +252,6 @@ def create_folder():
         return render_template('404.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=443, debug=True, ssl_context='adhoc')
+    context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+    context.load_cert_chain('C:\\Users\\Username\\myhomecloud\\certs\\cert.pem', 'C:\\Users\\Username\\myhomecloud\\certs\\key.pem') # O la ruta donde has guardado los certificados
+    app.run(host='0.0.0.0', port=443, debug=True, ssl_context=context)

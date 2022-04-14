@@ -7,6 +7,7 @@ from hurry.filesize import size
 import os
 import hashlib
 import re
+from flask_sslify import SSLify
 import ssl
 import socket
 
@@ -30,6 +31,7 @@ BASE_DIR = os.environ.get('BASE_DIR')
 abs_path_folder = []
 
 app = Flask(__name__,template_folder='template')
+sslify = SSLify(app)
 app.secret_key = secret_key
 
 # Conexion a la base de datos
@@ -253,4 +255,6 @@ def create_folder():
         return render_template('404.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=443 , debug=True, ssl_context='adhoc')
+    context = ssl.Context(ssl.PROTOCOL_TLS_SERVER)
+    context.load_cert_chain('/home/Username/myhomecloud/certs/key.pem', '/home/Username/myhomecloud/certs/cert.pem')
+    app.run(host='0.0.0.0', port=443 , debug=True, ssl_context=context)
