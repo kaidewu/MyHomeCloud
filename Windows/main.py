@@ -46,7 +46,7 @@ mysql = MySQL(app)
 def login():
      # Si algo sale mal que salga un mensaje
     msg = ''
-    # Comprovamos si "username" y "password" POST request existe (los datos los recogemos de los formularios)
+    # Comprobamos si "username" y "password" POST request existe (los datos los recogemos de los formularios)
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         # Create variables for easy access
         username = request.form['username']
