@@ -19,7 +19,7 @@ ip = s.getsockname()[0]
 # Importamos el contenido de config.env
 from dotenv import load_dotenv
 # Ruta en Windows donde este el fichero config.env
-load_dotenv('C:\\Users\\kayfe\\Desktop\\Github\\MyHomeCloud\\config.env') # Ruta donde lo guardaste
+load_dotenv('') # Ruta donde lo guardaste
 
 secret_key = os.environ.get('SECRET_KEY')
 mysql_user = os.environ.get('MYSQL_USER')
